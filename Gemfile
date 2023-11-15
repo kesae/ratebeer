@@ -78,6 +78,11 @@ group :production do
    gem 'pg'
 end
 
+group :development, :test do
+  gem 'pry-byebug'
+end
+
+
 gem "dockerfile-rails", ">= 1.5", :group => :development
 
 gem "sentry-ruby", "~> 5.13"
