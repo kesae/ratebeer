@@ -1,0 +1,14 @@
+# rails c
+brewery = Brewery.new name: "BrewDog", year: 2007
+brewery.save
+beer1 = Beer.new name: "Punk IPA", style: "IPA"
+beer2 = Beer.new name: "Nanny State", style: "lowalcohol"
+brewery.beers << beer1
+brewery.beers << beer2
+beer1.ratings.create score: 12
+beer1.ratings.create score: 40
+beer1.ratings.create score: 30
+beer2.ratings.create score: 46
+beer2.ratings.create score: 12
+beer1.ratings.create score: 22
+brewery.save
