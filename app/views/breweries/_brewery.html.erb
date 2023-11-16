@@ -17,4 +17,10 @@
       <%= link_to beer.name, beer %>
     <% end %>
   </p>
+  <p>
+    <%= "Brewery has #{pluralize(brewery.ratings.count, 'rating')}" %>
+    <% if brewery.ratings.count > 0 %>
+      <%= "with an average of #{brewery.average_rating.round(1)}" %>
+    <% end %>
+  </p>
 </div>
