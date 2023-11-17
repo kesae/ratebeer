@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'breweries#index'
   resources :ratings, only: [:index, :new, :create, :destroy]
-  resources :session, only: [:index, :create, :destroy]
+  resource :session, only: [:index, :create, :destroy]
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
