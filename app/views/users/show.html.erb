@@ -1,10 +1,29 @@
 <p style="color: green"><%= notice %></p>
-
-<%= render @user %>
-
+<h3>Username:</h3>
+<p>
+  <%= @user.username %>
+</p>
+<p>
+  <% text = "Has made #{pluralize(@user.ratings.count, 'rating')}"
+ %>
+  <% unless @user.ratings.empty? %>
+    <% text += ", average rating #{@user.average_rating.round(1)}" %>
+  <% end %>
+  <%= text %>
+</p>
+<p>
+  <strong>ratings:</strong>
+</p>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li>
+      <%= rating %>
+      <%= link_to "Delete", rating, data: { 'turbo-method': :delete } %>
+    </li>
+  <% end %>
+</ul>
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
-
   <%= button_to "Destroy this user", @user, method: :delete %>
 </div>
