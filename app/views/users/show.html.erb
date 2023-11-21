@@ -12,6 +12,16 @@
   <%= text %>
 </p>
 <p>
+  <strong>member of:</strong>
+</p>
+<ul>
+  <% @user.memberships.each do |membership| %>
+    <li>
+      <%= link_to membership, membership %>
+    </li>
+  <% end %>
+</ul>
+<p>
   <strong>ratings:</strong>
 </p>
 <ul>
