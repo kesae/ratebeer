@@ -3,7 +3,7 @@
   <% @ratings.each do |rating| %>
     <li>
       <%= rating %>
-      <% until rating.user == nil %>
+      <% unless rating.user == nil %>
         <%= link_to rating.user.username, rating.user %>
       <% end %>
     </li>
