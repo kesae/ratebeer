@@ -3,8 +3,11 @@
   <% @ratings.each do |rating| %>
     <li>
       <%= rating %>
-      <% unless rating.user == nil %>
+      <% if rating.user != nil %>
         <%= link_to rating.user.username, rating.user %>
+      <% end %>
+      <% if current_user&.username == "admin" %>
+        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
       <% end %>
     </li>
   <% end %>
