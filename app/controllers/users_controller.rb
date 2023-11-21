@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    return unless current_user.id == @user.id || current_user.username == "admin"
+    return unless current_user.id == @user.id
 
     @user.destroy
     session[:user_id] = nil
