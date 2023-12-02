@@ -1,5 +1,17 @@
 require 'rails_helper'
 
+def create_beer_with_rating(object, score)
+  beer = FactoryBot.create(:beer)
+  FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
+  beer
+end
+
+def create_beers_with_many_ratings(object, *scores)
+  scores.each do |score|
+    create_beer_with_rating(object, score)
+  end
+end
+
 RSpec.describe User, type: :model do
   it "has the username set correctly" do
     user = User.new username: "Pekka"
@@ -43,5 +55,27 @@ RSpec.describe User, type: :model do
       expect(user.ratings.count).to eq(2)
       expect(user.average_rating).to eq(15.0)
     end
+  end
+  it "has method for determining the favorite_beer" do
+    user = FactoryBot.create(:user)
+    expect(user).to respond_to(:favorite_beer)
+  end
+  it "without ratings does not have a favorite beer" do
+    user = FactoryBot.create(:user)
+    expect(user.favorite_beer).to eq(nil)
+  end
+  it "is the only rated if only one rating" do
+    user = FactoryBot.create(:user)
+    beer = FactoryBot.create(:beer)
+    rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+
+    expect(user.favorite_beer).to eq(beer)
+  end
+  it "is the one with highest rating if several rated" do
+    user = FactoryBot.create(:user)
+    create_beers_with_many_ratings( {user: user}, 10, 15, 9)
+    best = create_beer_with_rating({ user: user }, 25 )
+
+    expect(user.favorite_beer).to eq(best)
   end
 end
