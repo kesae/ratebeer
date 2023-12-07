@@ -11,6 +11,16 @@
   <% end %>
   <%= text %>
 </p>
+<% if @user.favorite_style%>
+  <p>
+    <strong>Favorite style:</strong> <%="#{@user.favorite_style}" %>
+  </p>
+<% end %>
+<% if @user.favorite_brewery%>
+  <p>
+    <strong>Favorite brewery:</strong> <%="#{@user.favorite_brewery}" %>
+  </p>
+<% end %>
 <p>
   <strong>member of:</strong>
 </p>
