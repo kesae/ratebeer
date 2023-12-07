@@ -1,5 +1,6 @@
 class Rating < ApplicationRecord
   belongs_to :beer
+  has_one :brewery, through: :beers
   belongs_to :user
 
   validates :score, numericality: { greater_than_or_equal_to: 1,
