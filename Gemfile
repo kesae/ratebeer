@@ -66,6 +66,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 # Use PostgreSQL in production and SQLite otherwise
@@ -80,11 +83,6 @@ end
 
 group :development, :test do
   gem 'pry-byebug'
-end
-
-group :test do
-  gem 'rspec-rails', '~> 6.0.0'
-  gem 'factory_bot_rails'
 end
 
 gem "dockerfile-rails", ">= 1.5", :group => :development
