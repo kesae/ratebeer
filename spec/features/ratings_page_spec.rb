@@ -35,13 +35,12 @@ describe "Ratings page" do
   end
 
   it "shows ratings and their count" do
-    ratings = [16, 17, 18, 19]
-    create_many(:rating, {user: user}, {score: ratings})
+    scores = [16, 17, 18, 19]
+    ratings = create_many(:rating, {user: user}, {score: scores})
     visit ratings_path
     ratings.each do |rating|
       expect(page).to have_content rating.to_s
     end
     expect(page).to have_content "Ratings count: #{ratings.count}"
   end
-
 end
