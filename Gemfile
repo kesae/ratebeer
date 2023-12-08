@@ -69,6 +69,7 @@ group :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'simplecov', require: false
 end
 
 # Use PostgreSQL in production and SQLite otherwise
