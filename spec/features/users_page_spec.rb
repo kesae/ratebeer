@@ -62,4 +62,12 @@ describe "User Page" do
       end
     }.to change{Rating.count}.by(-ratings.count)
   end
+
+  it "shows user's favorite style" do
+    expect(page).to have_content user.favorite_style.to_s
+  end
+
+  it "shows user's favorite brewery" do
+    expect(page).to have_content user.favorite_brewery.to_s
+  end
 end
