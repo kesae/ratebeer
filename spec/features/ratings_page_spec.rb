@@ -25,8 +25,16 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+end
 
-  it "shows ratings and their count on the ratings page" do
+describe "Ratings page" do
+  let!(:user) { FactoryBot.create :user }
+
+  before :each do
+    sign_in(username: "Pekka", password: "Foobar1")
+  end
+
+  it "shows ratings and their count" do
     ratings = [16, 17, 18, 19]
     create_many(:rating, {user: user}, {score: ratings})
     visit ratings_path
@@ -35,4 +43,5 @@ describe "Rating" do
     end
     expect(page).to have_content "Ratings count: #{ratings.count}"
   end
+
 end
