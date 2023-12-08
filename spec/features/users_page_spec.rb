@@ -33,3 +33,25 @@ describe "User" do
     }.to change{User.count}.by(1)
   end
 end
+
+describe "User Page" do
+  let(:user) { FactoryBot.create(:user) }
+
+  before :each do
+    sign_in(username: "Pekka", password: "Foobar1")
+  end
+
+  it "contains only the user's ratings" do
+    user2 = FactoryBot.create(:user, username: "Vilma")
+    ratings = create_many(:rating, {user: user}, {score: [11,12,13,14]})
+    ratings2 = create_many(:rating, {user: user2}, {score: [21,22,23,24]})
+    visit user_path(user)
+    ratings.each do |rating|
+      expect(page).to have_content rating.to_s
+    end
+    ratings2.each do |rating|
+      expect(page).not_to have_content rating.to_s
+    end
+  end
+
+end
