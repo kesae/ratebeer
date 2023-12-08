@@ -28,8 +28,6 @@ class User < ApplicationRecord
   def favorite_brewery
     return nil if ratings.empty?
 
-    # beer_id = ratings.group(:beer_id).order(Arel.sql("avg(score) desc")).first.beer_id
-    # Beer.find_by id: beer_id
-    breweries.group(:name).order(Arel.sql("avg(score) desc")).first
+    breweries.group(:id).order(Arel.sql("avg(score) desc")).first
   end
 end
