@@ -25,4 +25,14 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  it "shows ratings and their count on the ratings page" do
+    ratings = [16, 17, 18, 19]
+    create_many(:rating, {user: user}, {score: ratings})
+    visit ratings_path
+    ratings.each do |rating|
+      expect(page).to have_content rating.to_s
+    end
+    expect(page).to have_content "Ratings count: #{ratings.count}"
+  end
 end
