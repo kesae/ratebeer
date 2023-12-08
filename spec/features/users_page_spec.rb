@@ -36,6 +36,7 @@ end
 
 describe "User Page" do
   let(:user) { FactoryBot.create(:user) }
+  let!(:ratings) { create_many(:rating, {user: user}, {score: [11,12,13,14]})}
 
   before :each do
     sign_in(username: "Pekka", password: "Foobar1")
@@ -43,7 +44,6 @@ describe "User Page" do
 
   it "contains only the user's ratings" do
     user2 = FactoryBot.create(:user, username: "Vilma")
-    ratings = create_many(:rating, {user: user}, {score: [11,12,13,14]})
     ratings2 = create_many(:rating, {user: user2}, {score: [21,22,23,24]})
     visit user_path(user)
     ratings.each do |rating|
@@ -54,4 +54,12 @@ describe "User Page" do
     end
   end
 
+  it "allows users to remove their ratings" do
+    expect {
+      ratings.each do |rating|
+        visit user_path(user)
+        find(:xpath, "//a[@href='/ratings/#{rating.id}']").click
+      end
+    }.to change{Rating.count}.by(-ratings.count)
+  end
 end
