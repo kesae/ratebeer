@@ -95,3 +95,5 @@ gem "sentry-rails", "~> 5.13"
 
 
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'httparty'

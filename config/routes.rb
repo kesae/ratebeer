@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   root 'breweries#index'
   resources :ratings, only: [:index, :new, :create, :destroy]
   resource :session, only: [:index, :create, :destroy]
+  get 'places', to: 'places#index'
+  post 'places', to: 'places#search'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
