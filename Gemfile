@@ -71,6 +71,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem 'rubocop'
+  gem 'webmock'
 end
 
 # Use PostgreSQL in production and SQLite otherwise
