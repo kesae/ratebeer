@@ -6,6 +6,7 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'helpers'
+require 'webmock/rspec'
 require 'simplecov'
 SimpleCov.start('rails')
 # Add additional requires below this line. Rails is not loaded until this point!
