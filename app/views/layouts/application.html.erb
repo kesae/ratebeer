@@ -27,9 +27,6 @@
         <%= link_to 'Sign in' , signin_path  %>
       <% end %>
     </nav>
-    <% if not session[:user_id].nil? %>
-      <p><%= User.find(session[:user_id]).username %> signed in</p>
-    <% end %>
     <%= yield %>
   </body>
 </html>
