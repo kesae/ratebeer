@@ -6,7 +6,7 @@ class BeermappingApi
     return places if places
 
     places = get_places_in(city)
-    Rails.cache.write(city, places)
+    Rails.cache.write(city, places, expires_in: 1.week)
     places
   end
 
