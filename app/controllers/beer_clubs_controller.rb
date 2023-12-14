@@ -9,8 +9,8 @@ class BeerClubsController < ApplicationController
 
   # GET /beer_clubs/1 or /beer_clubs/1.json
   def show
-    @membership = Membership.new
-    @beer_club = BeerClub.find_by id: params[:id]
+    @membership = Membership.find_by user_id: current_user.id if current_user
+    @show = Membership.new
   end
 
   # GET /beer_clubs/new
@@ -53,7 +53,6 @@ class BeerClubsController < ApplicationController
   # DELETE /beer_clubs/1 or /beer_clubs/1.json
   def destroy
     @beer_club.destroy
-
     respond_to do |format|
       format.html { redirect_to beer_clubs_url, notice: "Beer club was successfully destroyed." }
       format.json { head :no_content }
