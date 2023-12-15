@@ -79,20 +79,23 @@ RSpec.describe User, type: :model do
       expect(user.favorite_style).to eq(nil)
     end
     it "is of the only rated if only one rating" do
-      beer = FactoryBot.create(:beer, style: "Porter")
+      style = FactoryBot.create(:style)
+      beer = FactoryBot.create(:beer, style: style)
       rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
 
-      expect(user.favorite_style).to eq("Porter")
+      expect(user.favorite_style).to eq(style)
     end
     it "is the style with highest average rating" do
       scores = [10, 30, 40, 50]
-      styles = ["Lager", "Porter", "Porter", "Lager"]
+      style1 = FactoryBot.create(:style, name: "Lager")
+      style2 = FactoryBot.create(:style, name: "Porter")
+      styles = [style1, style2, style2, style1]
       beers = create_many(:beer, {}, {style: styles})
       beers.each_with_index do |beer, i|
         FactoryBot.create(:rating, score: scores[i], beer: beer, user: user)
       end
 
-      expect(user.favorite_style).to eq("Porter")
+      expect(user.favorite_style).to eq(style2)
     end
   end
 
