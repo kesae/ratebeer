@@ -4,6 +4,16 @@
   city <%= form.text_field :city %>
   <%= form.submit "Search" %>
 <% end %>
+<% if @place && @weather %>
+  <section>
+    <h3><%= "The current beer weather in #{@place}" %></h3>
+    <p><%= "#{@weather.temperature} Celsius" %></p>
+    <% @weather.weather_icons.each do |img|%>
+      <%= image_tag(img) %>
+    <% end %>
+    <p><strong>wind</strong> <%= "#{@weather.wind_speed}, direction: #{@weather.wind_dir}" %></p>
+  </section>
+<% end %>
 <% if @places %>
   <table>
     <thead>
