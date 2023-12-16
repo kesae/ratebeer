@@ -29,4 +29,15 @@ module Helpers
     fill_in('password', with:credentials[:password])
     click_button('Log in')
   end
+
+  def current_weather(place)
+      allow(Weather).to receive(:current).with(place).and_return(
+      Weather.new(
+        temperature: -7,
+        weather_icons: ["https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0027_light_snow_showers_night.png"],
+        wind_speed: 11,
+        wind_dir: "SSE"
+      )
+    )
+  end
 end

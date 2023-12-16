@@ -5,7 +5,7 @@ describe "Places" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [ Place.new( name: "Oljenkorsi", id: 1 ) ]
     )
-
+    current_weather("kumpula")
     visit places_path
     fill_in('city', with: 'kumpula')
     click_button "Search"
@@ -19,7 +19,7 @@ describe "Places" do
         Place.new( name: "Kronikka", id: 2 )
       ]
     )
-
+    current_weather("helsinki")
     visit places_path
     fill_in('city', with: 'helsinki')
     click_button "Search"
@@ -29,7 +29,7 @@ describe "Places" do
   it "if no locations returned by the API, tells it in a notice" do
     place = "oulu"
     allow(BeermappingApi).to receive(:places_in).with(place).and_return([])
-
+    current_weather(place)
     visit places_path
     fill_in('city', with: place)
     click_button "Search"
