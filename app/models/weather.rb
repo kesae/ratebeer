@@ -7,7 +7,7 @@ class Weather < OpenStruct
     return weather if weather
 
     weather = get_weather_in(city)
-    Rails.cache.write(key, weather, expires_in: 1.week)
+    Rails.cache.write(key, weather, expires_in: 5.minutes)
     weather
   end
 
