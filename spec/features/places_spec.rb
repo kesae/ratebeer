@@ -33,6 +33,6 @@ describe "Places" do
     visit places_path
     fill_in('city', with: place)
     click_button "Search"
-    expect(find("#notice")).to have_content "No locations in #{place}"
+    expect(find(".alert")).to have_content "No locations in #{place}"
   end
 end
