@@ -1,7 +1,7 @@
 <h1>New membership</h1>
 <%= form_with model: @membership do |form| %>
-  <%= form.label :beer_club_id, "club:" %>
-  <%= form.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
+  <%= form.label :beer_club_id, "club:", class: "form-label" %>
+  <%= form.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name), {}, {class: "form-select"} %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <br>
   <%= form.submit "Create Membership", class: "btn btn-danger" %>

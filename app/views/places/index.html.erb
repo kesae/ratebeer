@@ -1,7 +1,9 @@
 <h1>Beer places search</h1>
 <%= form_with url: places_path, method: :post do |form| %>
-  city <%= form.text_field :city %>
-  <%= form.submit "Search", class: "btn btn-primary" %>
+  <div class="input-group">
+    <%= form.text_field :city, placeholder: "City", class: "form-control" %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  </div>
 <% end %>
 <% if @place && @weather %>
   <section>

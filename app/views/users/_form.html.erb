@@ -11,17 +11,17 @@
   <% end %>
   <% if @user.new_record? %>
     <div>
-      <%= form.label :username, style: "display: block" %>
-      <%= form.text_field :username %>
+      <%= form.label :username, class: "form-label", style: "display: block" %>
+      <%= form.text_field :username, class: "form-control" %>
     </div>
   <% end %>
   <div>
-    <%= form.label :password, style: "display: block"%>
-    <%= form.password_field :password %>
+    <%= form.label :password, class: "form-label", style: "display: block"%>
+    <%= form.password_field :password, class: "form-control" %>
   </div>
   <div>
-    <%= form.label :password_confirmation, style: "display: block"%>
-    <%= form.password_field :password_confirmation %>
+    <%= form.label :password_confirmation, class: "form-label", style: "display: block"%>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
   <div>
     <%= form.submit "Create User", class: "btn btn-danger"  %>
