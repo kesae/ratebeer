@@ -2,11 +2,11 @@
 <p>Number of breweries: <%= @breweries.count %></p>
 <div id="breweries">
   <% @breweries.each do |brewery| %>
-    <div id="<%= dom_id brewery %>">
-      <p>
+    <div class="card m-2" id="<%= dom_id brewery %>">
+      <p class="card-title">
         <%= link_to brewery.name, brewery %>
       </p>
-      <p>
+      <p class="card-text">
         <strong>Year:</strong>
         <%= brewery.year %>
       </p>

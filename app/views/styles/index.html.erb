@@ -2,10 +2,12 @@
 
 <div id="styles">
   <% @styles.each do |style| %>
-    <%= render style %>
-    <p>
-      <%= link_to "Show this style", style %>
-    </p>
+    <section class="card m-2 p-2">
+      <%= render style %>
+      <p>
+        <%= link_to "Show this style", style %>
+      </p>
+    </section>
   <% end %>
 </div>
 

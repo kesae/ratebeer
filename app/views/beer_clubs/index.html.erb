@@ -1,7 +1,9 @@
 <h1>Beer clubs</h1>
 <div id="beer_clubs">
   <% @beer_clubs.each do |beer_club| %>
+    <section class="card m-2 p-2">
     <%= render beer_club %>
+    </section>
   <% end %>
 </div>
 <%= link_to("New beer club", new_beer_club_path) if current_user %>
