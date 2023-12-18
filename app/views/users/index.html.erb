@@ -2,7 +2,7 @@
 
 <div id="users">
   <% @users.each do |user| %>
-    <section class="card m-2 p-2">
+    <section class="card mb-3 p-2">
       <%= render user %>
       <p>
         <%= link_to "Show this user", user, class: "btn btn-primary" %>
