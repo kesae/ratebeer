@@ -1,10 +1,23 @@
 <p style="color: green"><%= notice %></p>
 <h1>Beers</h1>
-<div id="beers">
-  <% @beers.each do |beer| %>
-    <%= render beer %>
-  <% end %>
-</div>
+<table id="beers" class="table table-striped">
+  <thead>
+    <th scope="col">Beer</th>
+    <th scope="col">Style</th>
+    <th scope="col">Brewery</th>
+    <th scope="col">Rating</th>
+  </thead>
+  <tbody>
+    <% @beers.each do |beer| %>
+      <tr>
+        <td><%= link_to beer.name, beer %></td>
+        <td><%= link_to beer.style %></td>
+        <td><%= link_to beer.brewery %></td>
+        <td><%= if beer.ratings.length > 0 then beer.average_rating.round(1) else 0.0 end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= link_to("New beer", new_beer_path) if current_user %>
 <p>
   <%= link_to "List of breweries", breweries_path %>
