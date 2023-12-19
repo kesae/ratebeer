@@ -6,6 +6,9 @@ class Brewery < ApplicationRecord
   validates :year, numericality: { only_integer: true }, comparison: { greater_than_or_equal_to: 1040 }
   validate :year_cannot_be_in_the_future
 
+  scope :active, -> { where active: true }
+  scope :retired, -> { where active: [nil, false] }
+
   def year_cannot_be_in_the_future
     return unless year.present? && year.to_i > Time.now.year
 
