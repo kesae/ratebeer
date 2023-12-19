@@ -4,17 +4,21 @@ describe "Breweries page" do
   it "should not have any before been created" do
     visit breweries_path
     expect(page).to have_content 'Listing breweries'
-    expect(page).to have_content 'Number of breweries: 0'
+    expect(page).to have_content 'Number of active breweries: 0'
+    expect(page).to have_content 'Number of retired breweries: 0'
   end
-  it "lists the existing breweries and their total number" do
+  it "lists the total number of active and retired breweries" do
     breweries = ["Koff", "Karjala", "Schlenkerla"]
     breweries.each do |brewery_name|
-      FactoryBot.create(:brewery, name: brewery_name)
+      FactoryBot.create(:brewery, name: brewery_name, active: true)
     end
+    FactoryBot.create(:brewery, active: false)
+    FactoryBot.create(:brewery)
 
     visit breweries_path
 
-    expect(page).to have_content "Number of breweries: #{breweries.count}"
+    expect(page).to have_content "Number of active breweries: #{breweries.count}"
+    expect(page).to have_content "Number of retired breweries: 2"
 
     breweries.each do |brewery_name|
       expect(page).to have_content brewery_name
