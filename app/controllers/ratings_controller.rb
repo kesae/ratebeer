@@ -1,6 +1,8 @@
 class RatingsController < ApplicationController
   def index
     @ratings = Rating.all
+    @top_users = User.top(3)
+    @last_ratings = Rating.last(5)
   end
 
   def new

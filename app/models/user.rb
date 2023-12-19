@@ -32,4 +32,8 @@ class User < ApplicationRecord
 
     breweries.group(:id).order(Arel.sql("avg(score) desc")).first
   end
+
+  def self.top(number)
+    User.all.sort_by{ |u| u.ratings.count }.reverse.first(number)
+  end
 end

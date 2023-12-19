@@ -18,4 +18,8 @@ class Brewery < ApplicationRecord
   def to_s
     name
   end
+
+  def self.top(number)
+    Brewery.all.sort_by(&:average_rating).reverse.first(number)
+  end
 end
