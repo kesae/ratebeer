@@ -13,3 +13,12 @@ if ActiveRecord::Base.connection.column_exists?(:beers, :old_style)
     beer.save
   end
 end
+
+if Brewery.all.map(&:active).all?(nil)
+   Brewery.all.first(Brewery.all.size - 1).each do |brewery|
+    if brewery.active.nil?
+      brewery.active = true
+      brewery.save
+    end
+  end
+end
