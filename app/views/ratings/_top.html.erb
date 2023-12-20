@@ -1,0 +1,19 @@
+<section class="col">
+    <h3><%= "Best #{name.pluralize.downcase}" %></h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th><%= name %></th>
+            <th>Average</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% name.constantize.top(3).each do |item|%>
+            <tr>
+            <td><%= item.name %></td>
+            <td><%= round(item.average_rating) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</section>
