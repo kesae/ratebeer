@@ -6,7 +6,7 @@
   <% text = "Has made #{pluralize(@user.ratings.count, 'rating')}"
  %>
   <% unless @user.ratings.empty? %>
-    <% text += ", average rating #{@user.average_rating.round(1)}" %>
+    <% text += ", average rating #{round(@user.average_rating)}" %>
   <% end %>
   <%= text %>
 </p>

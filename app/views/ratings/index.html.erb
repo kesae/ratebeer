@@ -15,7 +15,7 @@
             <% name.constantize.top(3).each do |item|%>
               <tr>
                 <td><%= item.name %></td>
-                <td><%= item.average_rating.round(1) %></td>
+                <td><%= round(item.average_rating) %></td>
               </tr>
             <% end %>
           </tbody>
