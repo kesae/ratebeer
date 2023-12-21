@@ -1,7 +1,8 @@
-<h3>Username:</h3>
-<p>
-  <%= @user.username %>
-</p>
+<h3>Username: <%= @user.username %></h3>
+<% if current_user && current_user.admin %>
+  <% msg = @user.closed? ? "Open account" : "Close account" %>
+  <%= link_to msg, toggle_closed_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger " %>
+<% end %>
 <p>
   <% text = "Has made #{pluralize(@user.ratings.count, 'rating')}"
  %>
