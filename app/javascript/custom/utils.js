@@ -28,7 +28,39 @@ BREWERIES.show = () => {
   });
 };
 
+BREWERIES.sortByName = () => {
+  BREWERIES.list.sort((a, b) => {
+    return a.name.toUpperCase().localeCompare(b.name.toUpperCase());
+  });
+};
+
+BREWERIES.sortByYear = () => {
+  BREWERIES.list.sort((a, b) => a.year - b.year);
+};
+
+BREWERIES.sortByBeerCount = () => {
+  BREWERIES.list.sort((a, b) => a.beer_count - b.beer_count);
+};
+
 const breweries = () => {
+  document.getElementById('name').addEventListener('click', (e) => {
+    e.preventDefault();
+    BREWERIES.sortByName();
+    BREWERIES.show();
+  });
+
+  document.getElementById('year').addEventListener('click', (e) => {
+    e.preventDefault();
+    BREWERIES.sortByYear();
+    BREWERIES.show();
+  });
+
+  document.getElementById('beer_count').addEventListener('click', (e) => {
+    e.preventDefault();
+    BREWERIES.sortByBeerCount();
+    BREWERIES.show();
+  });
+
   fetch('breweries.json')
     .then((response) => response.json())
     .then(handleResponse);
