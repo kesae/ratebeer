@@ -3,6 +3,7 @@ module RatingAverage
   def average_rating
     return 0.0 if ratings.empty?
 
-    ratings.map(&:score).reduce(:+) / ratings.count.to_f
+    rating_count = ratings.size
+    ratings.map(&:score).sum / rating_count
   end
 end
