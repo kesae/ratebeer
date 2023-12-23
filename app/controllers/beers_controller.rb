@@ -3,7 +3,8 @@ class BeersController < ApplicationController
   before_action :set_breweries_and_styles_for_template, only: [:new, :edit, :create]
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_admin, only: [:destroy]
-  before_action :expire_cache, only: [:create, :update, :destroy]
+  before_action :expire_beers_fragments, only: [:create, :update, :destroy]
+  before_action :expire_beer_count_fragments, only: [:create, :destroy]
   # GET /beers or /beers.json
   def index
     @order = params[:order] || 'name'
@@ -73,8 +74,12 @@ class BeersController < ApplicationController
 
   private
 
-  def expire_cache
+  def expire_beers_fragments
     %w(beerlist-name beerlist-brewery beerlist-style).each{ |f| expire_fragment(f) }
+  end
+
+  def expire_beer_count_fragments
+    expire_fragment('brewerylists')
   end
 
   # Use callbacks to share common setup or constraints between actions.

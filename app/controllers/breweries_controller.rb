@@ -2,6 +2,7 @@ class BreweriesController < ApplicationController
   before_action :set_brewery, only: %i[show edit update destroy]
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_admin, only: [:destroy]
+  before_action :expire_cache_fragments, only: [:create, :edit, :destroy]
 
   # GET /breweries or /breweries.json
   def index
@@ -74,6 +75,10 @@ class BreweriesController < ApplicationController
   end
 
   private
+
+  def expire_cache_fragments
+    expire_fragment('brewerylists')
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_brewery

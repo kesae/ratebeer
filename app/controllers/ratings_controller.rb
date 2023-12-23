@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+  before_action :expire_rating_statistics_fragments, only: [:create, :destroy]
   def index
     @ratings = Rating.all
     @top_users = User.top(3)
@@ -26,5 +27,11 @@ class RatingsController < ApplicationController
     rating = Rating.find(params[:id])
     rating.delete
     redirect_to ratings_path
+  end
+
+  private
+
+  def expire_rating_statistics_fragments
+    expire_fragment('brewerylists')
   end
 end
