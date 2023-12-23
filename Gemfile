@@ -102,3 +102,5 @@ gem 'httparty'
 gem 'bootstrap', '~> 5.2.0'
 gem 'jquery-rails'
 gem 'mini_racer'
+
+gem 'rack-mini-profiler'
