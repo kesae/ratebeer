@@ -1,2 +1,4 @@
-json.extract! beer, :id, :name, :style, :brewery_id, :created_at, :updated_at
+json.extract! beer, :name
+json.style beer.style.name
+json.brewery beer.brewery.name
 json.url beer_url(beer, format: :json)
