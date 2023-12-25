@@ -27,4 +27,33 @@ describe "Beerlist page" do
     visit beerlist_path
     expect(page).to have_content "Nikolai"
   end
+
+  it "is ordeded by the Name column by default", js:true do
+    visit beerlist_path
+
+    rows = find('#datatable').all('.tablerow')
+    expect(rows[0]).to have_content "Fastenbier"
+    expect(rows[1]).to have_content "Lechte Weisse"
+    expect(rows[2]).to have_content "Nikolai"
+  end
+
+  it "is ordeded by the Style column when the header is clicked", js:true do
+    visit beerlist_path
+    find('#style').click
+
+    rows = find('#datatable').all('.tablerow')
+    expect(rows[0]).to have_content "Lager"
+    expect(rows[1]).to have_content "Rauchbier"
+    expect(rows[2]).to have_content "Weizen"
+  end
+
+  it "is ordeded by the Brewery column when the header is clicked", js:true do
+    visit beerlist_path
+    find('#brewery').click
+
+    rows = find('#datatable').all('.tablerow')
+    expect(rows[0]).to have_content "Ayinger"
+    expect(rows[1]).to have_content "Koff"
+    expect(rows[2]).to have_content "Schlenkerla"
+  end
 end
