@@ -56,6 +56,8 @@ DATA.sortByColumn = (col) => {
 };
 
 const tablerows = () => {
+  if (document.querySelectorAll('#datatable').length < 1) return;
+
   for (const col of getColumns()) {
     col.addEventListener('click', (e) => {
       e.preventDefault();
