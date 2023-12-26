@@ -63,6 +63,8 @@ class UsersController < ApplicationController
 
   def toggle_closed
     user = User.find(params[:id])
+    return if user == current_user
+
     user.update_attribute :closed, !user.closed
 
     new_status = user.closed? ? "closed" : "open"
