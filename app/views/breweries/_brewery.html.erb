@@ -15,11 +15,27 @@
     <span>Beers count:</span>
     <%= brewery.beers.count %>
   </p>
-  <ul>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Style</th>
+      <th>rating</th>
+    </tr>
+  </thead>
+  <tbody>
     <% brewery.beers.each do |beer| %>
-      <li><%= link_to beer.name, beer %></li>
+      <tr>
+        <td><%= link_to beer.name, beer %></td>
+        <td><%= link_to beer.style.name, beer.style %></td>
+        <td><%= beer.average_rating %></td>
+      </tr>
     <% end %>
-  </ul>
+
+  </tbody>
+</table>
+
   <p>
     <%= "Brewery has #{pluralize(brewery.ratings.count, 'rating')}" %>
     <% if brewery.ratings.count > 0 %>
