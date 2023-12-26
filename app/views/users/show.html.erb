@@ -1,5 +1,5 @@
 <h3>Username: <%= @user.username %></h3>
-<% if current_user && current_user.admin %>
+<% if current_user && current_user.admin && @user != current_user %>
   <% msg = @user.closed? ? "Open account" : "Close account" %>
   <%= link_to msg, toggle_closed_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger " %>
 <% end %>
