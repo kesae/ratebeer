@@ -33,5 +33,6 @@ class RatingsController < ApplicationController
 
   def expire_rating_statistics_fragments
     expire_fragment('brewerylists')
+    %w(beerlist-name beerlist-brewery beerlist-style).each{ |f| expire_fragment(f) }
   end
 end
