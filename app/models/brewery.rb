@@ -1,5 +1,6 @@
 class Brewery < ApplicationRecord
   include RatingAverage
+  extend TopRatings
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
   validates :name, presence: true
@@ -17,9 +18,5 @@ class Brewery < ApplicationRecord
 
   def to_s
     name
-  end
-
-  def self.top(number)
-    Brewery.all.sort_by(&:average_rating).reverse.first(number)
   end
 end

@@ -1,5 +1,6 @@
 class Beer < ApplicationRecord
   include RatingAverage
+  extend TopRatings
 
   belongs_to :brewery
   has_many :ratings, dependent: :destroy
@@ -9,9 +10,5 @@ class Beer < ApplicationRecord
 
   def to_s
     "#{name}, #{brewery.name}"
-  end
-
-  def self.top(number)
-    Beer.all.sort_by(&:average_rating).reverse.first(number)
   end
 end
