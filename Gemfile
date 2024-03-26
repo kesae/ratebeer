@@ -4,13 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4"
+gem "rails", ">= 7.0.8.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", ">= 5.6.8"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -104,5 +104,11 @@ gem 'jquery-rails'
 gem 'mini_racer'
 
 gem 'rack-mini-profiler'
+gem "rack", ">= 2.2.8.1"
 
+
+
+# vulnerability fixes
+gem "actionpack", ">= 7.0.8.1"
+gem "nokogiri", ">= 1.15.6"
 gem "rdoc", ">= 6.6.3.1"
