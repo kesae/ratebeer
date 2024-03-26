@@ -104,3 +104,5 @@ gem 'jquery-rails'
 gem 'mini_racer'
 
 gem 'rack-mini-profiler'
+
+gem "rdoc", ">= 6.6.3.1"
